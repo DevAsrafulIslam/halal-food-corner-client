@@ -1,10 +1,23 @@
+import { Link } from "react-router-dom";
+
 const NavBar = () => {
   const navOptions = (
     <div className="gap-4 flex-none md:flex">
-      <li>Home</li>
-      <li>About</li>
-      <li>Contact</li>
-      <li>Details</li>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/menu">Our Menu</Link>
+      </li>
+      <li>
+        <Link to="">About</Link>
+      </li>
+      <li>
+        <Link to="">Contact</Link>
+      </li>
+      <li>
+        <Link to="">Details</Link>
+      </li>
     </div>
   );
   return (
