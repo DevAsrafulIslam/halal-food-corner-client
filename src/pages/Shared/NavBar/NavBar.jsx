@@ -10,7 +10,7 @@ const NavBar = () => {
         <Link to="/menu">Our Menu</Link>
       </li>
       <li>
-        <Link to="">About</Link>
+        <Link to="/order">Order Food</Link>
       </li>
       <li>
         <Link to="">Contact</Link>
@@ -48,7 +48,7 @@ const NavBar = () => {
               {navOptions}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Bistro Boss</a>
+          <a className="btn btn-ghost text-xl">Halal-Food-Corner</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
