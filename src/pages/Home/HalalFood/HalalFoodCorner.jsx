@@ -1,10 +1,10 @@
-import React from "react";
-import "./BistroBoss.css";
-const BistroBoss = () => {
+import "./HalalFoodCorner.css";
+
+const HalalFoodCorner = () => {
   return (
-    <div className="bistro-bg text-center text-black  py-20  px-36  my-10">
+    <div className="halalFood-bg text-center text-black  py-20  px-36  my-10">
       <div className="bg-white bg-opacity-60 px-8 py-8">
-        <h3 className="text-3xl uppercase">Bistro Boss</h3>
+        <h3 className="text-3xl uppercase">Halal-Food-Corner</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Necessitatibus, libero accusamus laborum deserunt ratione dolor
@@ -16,4 +16,4 @@ const BistroBoss = () => {
   );
 };
 
-export default BistroBoss;
+export default HalalFoodCorner;

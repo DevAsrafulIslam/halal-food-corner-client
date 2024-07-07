@@ -20,7 +20,7 @@ const Menu = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Menu</title>
+        <title>Halal Food Corner | Menu</title>
       </Helmet>
       <Cover img={menuImg} title=" Our Menu"></Cover>
       {/* main cover */}
@@ -35,9 +35,9 @@ const Menu = () => {
         title="dessert"
         img={dessertImg}
       ></MenuCategory>
-      <MenuCategory items={pizza} title="Pizza" img={pizzaImg}></MenuCategory>
-      <MenuCategory items={soup} title="Soup" img={soupImg}></MenuCategory>
-      <MenuCategory items={salad} title="Salad" img={saladImg}></MenuCategory>
+      <MenuCategory items={pizza} title="pizza" img={pizzaImg}></MenuCategory>
+      <MenuCategory items={soup} title="soup" img={soupImg}></MenuCategory>
+      <MenuCategory items={salad} title="salad" img={saladImg}></MenuCategory>
     </div>
   );
 };

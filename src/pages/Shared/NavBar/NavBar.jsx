@@ -1,8 +1,22 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProviders";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
+  const navigation = useNavigate();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+    navigation("/login");
+  };
   const navOptions = (
-    <div className="gap-4 flex-none md:flex">
+    <div className="gap-4 items-center flex-none md:flex">
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -10,14 +24,34 @@ const NavBar = () => {
         <Link to="/menu">Our Menu</Link>
       </li>
       <li>
-        <Link to="/order">Order Food</Link>
+        <Link to="/order/salad">Order Food</Link>
       </li>
       <li>
-        <Link to="">Contact</Link>
+        <Link to="/secret">Secret</Link>
       </li>
       <li>
-        <Link to="">Details</Link>
+        <Link to="/dashboard/mycart">
+          <button className="btn">
+            <FaShoppingCart />
+            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+          </button>
+        </Link>
       </li>
+
+      {user ? (
+        <>
+          <span className="">{user.displayName}</span>
+          <button onClick={handleLogOut} className="btn btn-ghost">
+            Log Out
+          </button>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </>
+      )}
     </div>
   );
   return (
@@ -43,7 +77,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className=" menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-800 rounded-box w-52"
             >
               {navOptions}
             </ul>
@@ -52,9 +86,6 @@ const NavBar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
         </div>
       </div>
     </>

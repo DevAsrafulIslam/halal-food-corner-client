@@ -4,20 +4,20 @@ import Category from "../Category/Category";
 import Featured from "../Featured/Featured";
 import Testimonials from "../Testimonials/Testimonials";
 import ChefCart from "../ChefCart/ChefCart";
-import BistroBoss from "../BistroBoss/BistroBoss";
 import Contact from "../Contact/Contact";
 import { Helmet } from "react-helmet-async";
+import HalalFoodCorner from "../HalalFood/HalalFoodCorner";
 
 const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Home</title>
+        <title>Halal Food Corner | Home</title>
       </Helmet>
       <Banner />
       <div className="container mx-auto">
         <Category />
-        <BistroBoss />
+        <HalalFoodCorner />
         <PopularMenu />
         <Contact />
         <ChefCart />
