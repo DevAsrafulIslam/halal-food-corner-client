@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProviders";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const {
@@ -15,24 +16,21 @@ const SignUp = () => {
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log("User created:", loggedUser);
+      navigate(from, { replace: true });
+
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          console.log("Profile Updated");
-          reset();
-          Swal.fire({
-            position: "top-middle",
-            icon: "success",
-            title: "User Created Successful.",
-            showConfirmButton: false,
-            timer: 1100,
-          });
-          navigate("/");
+          const saveUser = { name: data.name, email: data.email };
+           
         })
         .catch((error) => console.log(error));
     });
@@ -169,6 +167,7 @@ const SignUp = () => {
                 </Link>
               </small>
             </p>
+            <SocialLogin />
           </div>
         </div>
       </div>

@@ -5,10 +5,12 @@ import { GiWallet } from "react-icons/gi";
 import { IoMdMail, IoMdMenu } from "react-icons/io";
 import { MdReviews } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
+  const [cart] = useCart();
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open max-w-screen-xl mx-auto">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
         {/* Page content here */}
@@ -47,6 +49,11 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/mycart">
               <FaShoppingCart /> My Cart
+              <span>
+                <div className="badge badge-secondary">
+                  +{cart?.length || 0}
+                </div>
+              </span>
             </NavLink>
           </li>
           <li>
@@ -61,22 +68,22 @@ const Dashboard = () => {
           </li>
           <div className="divider"></div>
           <li>
-            <NavLink to="/dashboard/home">
+            <NavLink to="/">
               <FaHome /> Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/menu">
+            <NavLink to="/menu">
               <IoMdMenu /> Menu
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/shop">
+            <NavLink to="/shop">
               <FaBagShopping /> Shop
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/contact">
+            <NavLink to="/contact">
               <IoMdMail /> Contact
             </NavLink>
           </li>
