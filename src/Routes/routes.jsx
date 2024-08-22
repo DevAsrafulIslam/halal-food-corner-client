@@ -9,6 +9,9 @@ import Secret from "../pages/Shared/Secret/Secret";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import MyCart from "../pages/Deshboard/MyCart/MyCart";
+import AllUsers from "../pages/Deshboard/MyCart/AllUsers/AllUsers";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import PaymentFail from "../pages/Payment/PaymentFail";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +29,14 @@ export const router = createBrowserRouter([
       {
         path: "order/:category",
         element: <Order />,
+      },
+      {
+        path: "payment/success/:tran_id",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "/payment/fail/:tran_id",
+        element: <PaymentFail />,
       },
       {
         path: "login",
@@ -56,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: "mycart",
         element: <MyCart />,
+      },
+      {
+        path: "allusers",
+        element: <AllUsers />,
       },
     ],
   },

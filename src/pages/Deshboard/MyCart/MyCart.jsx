@@ -7,9 +7,31 @@ const MyCart = () => {
   const [cart, refetch] = useCart();
   //   how does reduce work
   const total = cart.reduce((sum, item) => item.price + sum, 0);
+  // SSLCommerz payment gateway
+  const handlePayment = () => {
+    const paymentCart = {
+      cart,
+      total,
+      currency: "USD",
+    };
+
+    fetch("http://localhost:5000/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(paymentCart),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Open the payment gateway in a new popup window
+        window.open(data.GatewayPageURL);
+        console.log(data);
+      });
+  };
 
   const handleDelete = (item) => {
-    console.log(item, "DElete item");
+    console.log(item, "Delete item");
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -46,7 +68,9 @@ const MyCart = () => {
       <div className="uppercase font-semibold h-[60px] flex justify-evenly items-center">
         <h3 className="text-3xl">Total Items: {cart.length}</h3>
         <h3 className="text-3xl">Total Price: ${total}</h3>
-        <button className="btn btn-warning btn-sm ">PAY</button>
+        <button onClick={handlePayment} className="btn btn-warning btn-sm ">
+          PAY
+        </button>
       </div>
       {/* table */}
       <div className="overflow-x-auto">

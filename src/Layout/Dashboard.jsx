@@ -1,14 +1,19 @@
 import { BiSolidCalendarEvent } from "react-icons/bi";
 import { FaCalendarAlt, FaHome, FaShoppingCart } from "react-icons/fa";
-import { FaBagShopping } from "react-icons/fa6";
+import { FaBagShopping, FaBook, FaUsers, FaUtensils } from "react-icons/fa6";
 import { GiWallet } from "react-icons/gi";
 import { IoMdMail, IoMdMenu } from "react-icons/io";
 import { MdReviews } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
+  // TODO Load data fron the server to have dynamic isAdmin base on data
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
+
   return (
     <div className="drawer lg:drawer-open max-w-screen-xl mx-auto">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -30,42 +35,79 @@ const Dashboard = () => {
         ></label>
         <ul className="menu text-base-content min-h-full w-80 p-4">
           {/* Sidebar content here */}
-          <li>
-            <NavLink to="/dashboard/userhome">
-              <FaHome /> User Home
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/userhome">
+                  <FaHome /> Admin Home
+                </NavLink>
+              </li>
 
-          <li>
-            <NavLink to="/dashboard/reservations">
-              <FaCalendarAlt /> Reservations
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/history">
-              <GiWallet /> Payment History
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/mycart">
-              <FaShoppingCart /> My Cart
-              <span>
-                <div className="badge badge-secondary">
-                  +{cart?.length || 0}
-                </div>
-              </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/review">
-              <MdReviews /> Add Review
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/booking">
-              <BiSolidCalendarEvent /> My Booking
-            </NavLink>
-          </li>
+              <li>
+                <NavLink to="/dashboard/reservations">
+                  <FaUtensils /> Add Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history">
+                  <FaBook />
+                  Manage Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history">
+                  <FaUsers />
+                  Manage Bookings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/allusers">
+                  <FaUsers />
+                  All Users
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/dashboard/userhome">
+                  <FaHome /> User Home
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/reservations">
+                  <FaCalendarAlt /> Reservations
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history">
+                  <GiWallet /> Payment History
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/mycart">
+                  <FaShoppingCart /> My Cart
+                  <span>
+                    <div className="badge badge-secondary">
+                      +{cart?.length || 0}
+                    </div>
+                  </span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/review">
+                  <MdReviews /> Add Review
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/booking">
+                  <BiSolidCalendarEvent /> My Booking
+                </NavLink>
+              </li>
+            </>
+          )}
+
           <div className="divider"></div>
           <li>
             <NavLink to="/">

@@ -13,6 +13,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@smastrom/react-rating": "^1.5.0",
     "@tanstack/react-query": "^5.50.1",
+    "axios": "^1.7.2",
     "firebase": "^10.12.0",
     "firebaseui": "^6.1.0",
     "keen-slider": "^6.8.6",
