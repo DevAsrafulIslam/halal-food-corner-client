@@ -15,7 +15,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="drawer lg:drawer-open max-w-screen-xl mx-auto">
+    <div className="drawer lg:drawer-open max-w-screen-m mx-auto gap-8">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
         {/* Page content here */}
@@ -27,13 +27,13 @@ const Dashboard = () => {
           Open drawer
         </label>
       </div>
-      <div className="drawer-side bg-[#D1A054]">
+      <div className="drawer-side ">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu text-base-content min-h-full w-80 p-4">
+        <ul className="menu text-base-content bg-slate-400 min-h-full w-80 p-4">
           {/* Sidebar content here */}
           {isAdmin ? (
             <>

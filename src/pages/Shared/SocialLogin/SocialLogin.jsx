@@ -19,7 +19,7 @@ const SocialLogin = () => {
           email: loggedInUser.email,
         };
 
-        fetch("http://localhost:5000/users", {
+        fetch("http://localhost:5001/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

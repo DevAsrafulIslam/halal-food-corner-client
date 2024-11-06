@@ -8,10 +8,10 @@ import SignUp from "../pages/SignUp/SignUp";
 import Secret from "../pages/Shared/Secret/Secret";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
-import MyCart from "../pages/Deshboard/MyCart/MyCart";
-import AllUsers from "../pages/Deshboard/MyCart/AllUsers/AllUsers";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import PaymentFail from "../pages/Payment/PaymentFail";
+import MyCart from "../pages/Deshboard/MyCart/MyCart";
+import AllUsers from "../pages/Deshboard/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
         element: <Order />,
       },
       {
-        path: "payment/success/:tran_id",
+        path: "payment/success/:tranId",
         element: <PaymentSuccess />,
       },
       {
@@ -70,6 +70,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "allusers",
+        element: <AllUsers />,
+      },
+      {
+        path: "users",
         element: <AllUsers />,
       },
     ],

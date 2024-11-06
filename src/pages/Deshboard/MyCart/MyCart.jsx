@@ -7,7 +7,7 @@ const MyCart = () => {
   const [cart, refetch] = useCart();
   //   how does reduce work
   const total = cart.reduce((sum, item) => item.price + sum, 0);
-  // SSLCommerz payment gateway
+
   const handlePayment = () => {
     const paymentCart = {
       cart,
@@ -15,7 +15,7 @@ const MyCart = () => {
       currency: "USD",
     };
 
-    fetch("http://localhost:5000/orders", {
+    fetch("http://localhost:5001/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/${item._id}`, {
+        fetch(`http://localhost:5001/carts/${item._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -61,7 +61,7 @@ const MyCart = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full mr-8">
       <Helmet>
         <title>Food Corner || My Cart</title>
       </Helmet>
@@ -76,9 +76,9 @@ const MyCart = () => {
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead className="bg-slate-400">
             <tr>
-              <th>#</th>
+              <th></th>
               <th>Food</th>
               <th>Item Name</th>
               <th>Price</th>

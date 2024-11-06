@@ -2,7 +2,7 @@
 
 // const AllUsers = () => {
 //   const { data: users = [], refetch } = useQuery(["users"], async () => {
-//     const res = await fetch("http://localhost:5000/users");
+//     const res = await fetch("http://localhost:5001/users");
 //     return res.json();
 //   });
 //   return <div>{users.length}</div>;
@@ -15,7 +15,7 @@ import { Helmet } from "react-helmet-async";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -28,7 +28,7 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`http://localhost:5001/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -47,36 +47,36 @@ const AllUsers = () => {
       });
   };
   const handleDelete = () => {
-    // Swal.fire({
-    //   title: "Are you sure?",
-    //   text: "You won't be able to revert this!",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes, delete it!",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     fetch(`http://localhost:5000/users/${user._id}`, {
-    //       method: "DELETE",
-    //     })
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         if (data.deletedCount > 0) {
-    //           refetch();
-    //           Swal.fire({
-    //             title: "Deleted!",
-    //             text: "User has been deleted.",
-    //             icon: "success",
-    //           });
-    //         }
-    //       });
-    //   }
-    // });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // fetch(`http://localhost:5001/users/${user._id}`, {
+        //   method: "DELETE",
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     if (data.deletedCount > 0) {
+        //       refetch();
+        //       Swal.fire({
+        //         title: "Deleted!",
+        //         text: "User has been deleted.",
+        //         icon: "success",
+        //       });
+        //     }
+        //   });
+      }
+    });
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full mr-8">
       <Helmet>
         <title>Food Corner || All Users</title>
       </Helmet>
@@ -87,9 +87,9 @@ const AllUsers = () => {
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
-          <thead>
+          <thead className="bg-slate-400">
             <tr>
-              <th>#</th>
+              <th></th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
